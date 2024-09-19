@@ -3,23 +3,25 @@ k3s_cluster:
   children:
     server:
       hosts:
-        192.16.35.11:
-    agent:
-      hosts:
-        192.16.35.12:
-        192.16.35.13:
+        {{ master_host }}:
+    # agent:
+    #  hosts:
+    #    192.16.35.12:
+    #    192.16.35.13:
 
   # Required Vars
   vars:
     ansible_port: 22
-    ansible_user: debian
+    ansible_user: "{{ ssh_user }}"
+    ansible_ssh_pass: "{{ ssh_pass }}"
+    ansible_become_pass: "{{ ssh_become }}"
     k3s_version: v1.30.2+k3s1
     # The token should be a random string of reasonable length. You can generate
     # one with the following commands:
     # - openssl rand -base64 64
     # - pwgen -s 64 1
     # You can use ansible-vault to encrypt this value / keep it secret.
-    token: "changeme!"
+    token: "ktCgRWGjYlND3qLmlSBiLpSNuG3NMviGyhY2pKYFT6Se88CF3MoUohuUSpOUs3LK"
     api_endpoint: "{{ hostvars[groups['server'][0]]['ansible_host'] | default(groups['server'][0]) }}"
     extra_server_args: ""
     extra_agent_args: ""
@@ -36,7 +38,7 @@ k3s_cluster:
     # Manifests or Airgap should be either full paths or relative to the playbook directory.
     # List of locally available manifests to apply to the cluster, useful for PVCs or Traefik modifications.
     # extra_manifests: [ '/path/to/manifest1.yaml', '/path/to/manifest2.yaml' ]
-    # airgap_dir: /tmp/k3s-airgap-images
+    airgap_dir: /tmp/amd64
 
     # server_config_yaml:  |
     #   This is now an inner yaml file. Maintain the indentation.
