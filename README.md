@@ -60,7 +60,7 @@ Setting up a loadbalancer or VIP beforehand to use as the API endpoint is possib
 Start provisioning of the cluster using the following command:
 
 ```bash
-ansible-playbook playbooks/site.yml -i inventory.yml -e "ssh_user=xxxx" -e "ssh_pass=xxxxx" -e "ssh_become=xxxx" -e "master_ip=xxxxxxxx"
+ansible-playbook playbooks/site.yml -i inventory.yml -e "ssh_user=xxxx" -e "ssh_pass=xxxxx" -e "ssh_become=xxxx" -e "master_host=xxxxxxxx"
 ```
 
 ### Using an external database
