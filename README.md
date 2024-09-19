@@ -101,14 +101,14 @@ Airgap installation is supported via the `airgap_dir` variable. This variable sh
 
 An example folder for an x86_64 cluster:
 ```bash
-$ ls ./playbooks/my-airgap/
+$ ls /tmp/amd64
 total 248M
 -rwxr-xr-x 1 $USER $USER  58M Nov 14 11:28 k3s
 -rw-r--r-- 1 $USER $USER 190M Nov 14 11:30 k3s-airgap-images-amd64.tar.gz
 
 $ cat inventory.yml
 ...
-airgap_dir: ./my-airgap # Paths are relative to the playbooks directory
+airgap_dir: /tmp/amd64 
 ```
 
 Additionally, if deploying on a OS with SELinux, you will also need to download the latest [k3s-selinux RPM](https://github.com/k3s-io/k3s-selinux/releases/latest) and place it in the airgap folder.
